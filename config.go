@@ -37,7 +37,6 @@ func main() {
 	//now we can use this clientset to build our api
 	//clientset.CoreV1()
 
-	clientset.
-		fmt.Println(config.Host)
+	fmt.Println(config.Host)
 	fmt.Println(config.APIPath)
 }
