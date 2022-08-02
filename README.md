@@ -11,3 +11,22 @@ deleting multiple resources.
 
 # Dry-run
 Dry-run is used when you have to perform HTTP verbs that can modify resources.
+
+# Server side apply
+
+# Resource version
+It is a server version of an object. It is a string type, not something numeric. Client api can check whether two resource 
+versions are equal or not. You can not compare greater than or less than operation between two resource version. 
+<br>
+The **get**,**list** and **watch** operation support resource version.
+Client find resource version in resources. `metadata.resourceVersion` field identifies the resource version.
+### Any
+### Most recent
+### Not older than
+### Exact
+
+# Kubernetes Authentication
+[link](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+
+# Client-go
+[link](https://github.com/kubernetes/client-go)
