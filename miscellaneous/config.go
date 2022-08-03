@@ -8,6 +8,9 @@ import (
 	"path/filepath"
 )
 
+//basic configuration, for a better configuration checkout the
+//miscellaneous/book-server.go, in main function you will find a
+//better clientset creation
 func main() {
 
 	//path to the config file in my local device
