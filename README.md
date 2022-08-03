@@ -25,8 +25,17 @@ Client find resource version in resources. `metadata.resourceVersion` field iden
 ### Not older than
 ### Exact
 
-# Kubernetes Authentication
-[link](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+## [Kubernetes Authentication](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
 
-# Client-go
-[link](https://github.com/kubernetes/client-go)
+# Repositories
+There are three repositories provided by kubernetes. 
+
+
+## [Client-go](https://github.com/kubernetes/client-go)
+The _k8s.io/client-go_ library that supports all API types that are officially part of kubernetes. It can be used to execute 
+the usual kubernetes REST verbs. The _tool_ package of this library creates actual kubernetes client for with the help of 
+kube config file.
+
+## Kubernetes API
+
+## API Machinery
