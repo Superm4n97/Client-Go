@@ -17,3 +17,16 @@ func GetService(svcName string, clientset kubernetes.Interface) v1.Service {
 
 	return *svc
 }
+
+func GetAllServices(clientset kubernetes.Interface) {
+
+	svcList, err := clientset.CoreV1().Services(v1.NamespaceDefault).List(context.TODO(), metav1.ListOptions{})
+	if err != nil {
+		fmt.Println("failed to list services")
+		panic(err)
+	}
+
+	for _, item := range svcList.Items {
+		fmt.Println(item.Name, " ", item.Spec.Ports)
+	}
+}
