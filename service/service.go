@@ -35,8 +35,8 @@ func emptyServiceTemplate(svcName, lb1, lb2 string, exposePort, podPort int32) v
 	}
 }
 
-func CreateNewService(clientst kubernetes.Interface) {
-	svc := emptyServiceTemplate("book-api-server", "app", "book-api-server", 9090, 8080)
+func CreateNewService(svcName string, clientst kubernetes.Interface) {
+	svc := emptyServiceTemplate(svcName, "app", "book-api-server", 9090, 8080)
 
 	res, err := clientst.CoreV1().Services(v1.NamespaceDefault).Create(context.TODO(), &svc, metav1.CreateOptions{})
 	if err != nil {

@@ -94,9 +94,9 @@ func GetDeployment(name string, clientset kubernetes.Interface) appsv1.Deploymen
 }
 
 //CreateDeployment creates a deployment returns nothing
-func CreateDeployment(clientset kubernetes.Interface) {
+func CreateDeployment(depName string, clientset kubernetes.Interface) {
 
-	dep := emptyDeploymentTemplate("book-api-server", 1, "app", "book-server", "server-container", "superm4n/book-api-server:v0.1.3", 8080)
+	dep := emptyDeploymentTemplate(depName, 1, "app", "book-server", "server-container", "superm4n/book-api-server:v0.1.3", 8080)
 
 	res, err := clientset.AppsV1().Deployments(v1.NamespaceDefault).Create(context.TODO(), &dep, v12.CreateOptions{})
 	if err != nil {
@@ -105,4 +105,15 @@ func CreateDeployment(clientset kubernetes.Interface) {
 	}
 
 	fmt.Println(res.Name, " deployment created")
+}
+
+func DeleteDeployment(depName string, clientset kubernetes.Interface) {
+
+	err := clientset.AppsV1().Deployments(v1.NamespaceDefault).Delete(context.TODO(), depName, v12.DeleteOptions{})
+	if err != nil {
+		fmt.Println("failed to create deployment")
+		panic(err)
+	}
+
+	fmt.Println(depName, " deployment deleted")
 }
