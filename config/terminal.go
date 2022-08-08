@@ -8,19 +8,13 @@ import (
 
 func Terminal() {
 	clientst := CreateNewClientSet()
-	//in := bufio.NewReader(os.Stdin)
 
 	for {
 		var cmd, cmd1, cmd2 string
 		fmt.Print(">")
-		//fmt.Scanln(&cmd)
-		//fmt.Fscan(in, &cmd)
-		//cmd, _ = in.ReadString('\n')
 
 		fmt.Scanln(&cmd1, &cmd2)
 		cmd = cmd1 + " " + cmd2
-
-		//fmt.Println("cmt : ", cmd)
 
 		if cmd1 != "" {
 			var name string

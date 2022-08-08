@@ -9,6 +9,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	v12 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/util/retry"
+	_ "k8s.io/client-go/util/retry"
+	"time"
 )
 
 //emptyDeploymentTemplate is a template that contains the basic configuration of a deployment.
@@ -54,16 +57,46 @@ func emptyDeploymentTemplate(deploymentName string, replicas int32, podLabel1 st
 //UpdateDeployment can only update the replicas of that deployment. It takes name,
 //replicas, clientset and update that deployment
 func UpdateDeployment(deploymentName string, replicas int32, clientset kubernetes.Interface) {
+
+	fmt.Println("entered into without sleep with replicas ", replicas)
+
+	depClientset := clientset.AppsV1().Deployments(v1.NamespaceDefault)
+
+	retryErr := retry.RetryOnConflict(retry.DefaultRetry, func() error {
+		dep := GetDeployment(deploymentName, clientset)
+		dep.Spec.Replicas = others.Int32ToPointer(replicas)
+
+		time.Sleep(time.Minute)
+
+		_, updateErr := depClientset.Update(context.TODO(), &dep, metav1.UpdateOptions{})
+		return updateErr
+	})
+
+	if retryErr != nil {
+		fmt.Println("failed to update")
+		panic(retryErr)
+	}
+
+	fmt.Println("successfully updated.")
+
+}
+
+func UpdateDeploymentWithSleep(deploymentName string, replicas int32, clientset kubernetes.Interface) {
+
+	fmt.Println("entered with sleep with replicas ", replicas)
+
 	dep := GetDeployment(deploymentName, clientset)
 	dep.Spec.Replicas = others.Int32ToPointer(replicas)
 
+	time.Sleep(time.Second * 10)
+
 	_, err := clientset.AppsV1().Deployments(v1.NamespaceDefault).Update(context.TODO(), &dep, metav1.UpdateOptions{})
 	if err != nil {
-		fmt.Println("failed to update deployment ", deploymentName)
+		fmt.Println("failed to update deployment with sleep ", deploymentName)
 		panic(err)
 	}
 
-	fmt.Println("updated deployment ", deploymentName)
+	fmt.Println("updated replicas with sleep ")
 }
 
 //GetDeploymentList gets the list of all the running deployments
