@@ -90,3 +90,53 @@ kube config file.
 ### Kubernetes API
 
 ### API Machinery
+
+
+## 3. Basics of client-go
+* The Repositories
+  * client
+  * Kubernetes API
+  * API Machinery
+* Kubernetes Objects on Go
+  * TypeMeta
+  * ObjectMeta
+* Client Sets
+  * Status Subresource
+  * Listing and Deletions
+  * Watches
+  * Client Expansion
+  * Client Options
+* Information and Caching
+  * Work Queue
+* API Machinery in Depth
+  * Kinds
+  * Resources
+  * Rest Mapping
+  * Scheme
+* Vendoring
+  * Glide
+  * dep
+  * Go Modules
+
+### TypeMeta
+TypeMeta contains
+* apiVersion
+* kind
+
+### ObjectMeta
+
+ObjectMeta basically describe the field of metadata. In JSON or YAML 
+these fields are under metadata. 
+
+## 4. Using Custom Resources
+* Discovery Information
+* Type definitions
+* Advanced Features of Custom Resources
+  * Validating Custom resources
+  * Short Names and Categories
+  * Printer Columns
+  * Subresources
+* A Developer's view on Custom Resources
+  * Dynamic Client
+  * Typed Clients
+  * 
