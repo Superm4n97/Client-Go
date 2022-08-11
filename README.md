@@ -106,7 +106,7 @@ kube config file.
   * Watches
   * Client Expansion
   * Client Options
-* Information and Caching
+* Informers and Caching
   * Work Queue
 * API Machinery in Depth
   * Kinds
@@ -139,4 +139,15 @@ these fields are under metadata.
 * A Developer's view on Custom Resources
   * Dynamic Client
   * Typed Clients
+  
+## 5. Automating Code Generation
+* Why Code generation
+* Calling the Generator
+* Controlling the Generators with Tags
+  * Global Tags
+  * Local Tags
+  * deepcopy-gen Tags
+  * runtime.Object and DeepCopyObject
+  * client-gen Tags
+  * informer-gen and lister-gen
   * 
