@@ -150,4 +150,14 @@ these fields are under metadata.
   * runtime.Object and DeepCopyObject
   * client-gen Tags
   * informer-gen and lister-gen
-  * 
+  
+## Tag
+A tag is a specially formatted Go comment in the following form:
+<br>
+
+// +some-tag<br>
+// +some-other-tag
+
+There are two kind of tags:
+1. Global 
+2. Local
