@@ -19,5 +19,6 @@ func main() {
 	//ingress.GetAllIngress(clientset)
 	//ingress.DeleteIngress("book-api-server2", clientset)
 
-	config.Terminal()
+	//config.Terminal()
+	config.DynamicClient()
 }
